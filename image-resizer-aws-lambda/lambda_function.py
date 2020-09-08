@@ -1,6 +1,6 @@
-import urllib.parse
-# AWS SDK for python
-import boto3
+# to parse the url - s3 filename
+#import urllib.parse
+
 # os library
 import os
 # create unique IDs 
@@ -8,6 +8,9 @@ import uuid
 
 # import Image module from Pillow
 from PIL import Image 
+
+# AWS SDK for python
+import boto3
 
 # initialize the S3 object
 s3 = boto3.client('s3')
@@ -31,7 +34,9 @@ def lambda_handler(event, context):
     print(bucket)
 
     #Get the file/key name from the event
-    key = urllib.parse.unquote_plus(event['Records'][0]['s3']['object']['key'], encoding='utf-8')
+    key = event['Records'][0]['s3']['object']['key']
+    #key = urllib.parse.unquote_plus(event['Records'][0]['s3']['object']['key'], encoding='utf-8')
+    print('input filename that is to be processed is = ', key)
     
     # save the file in /tmp directory -- lambda provide /tmp directory for storage during the execution of function
     temp_save_path = '/tmp/{}{}'.format(uuid.uuid4(), key)
