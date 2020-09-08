@@ -12,7 +12,4 @@ def lambda_handler(event, context):
     print(message)
     
     # leave the return code as it is
-    return {
-        'statusCode': 200,
-        'body': json.dumps(message)
-    }
+    return message
