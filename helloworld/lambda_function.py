@@ -11,5 +11,5 @@ def lambda_handler(event, context):
     #print the message
     print(message)
     
-    # leave the return code as it is
+    # let us return this message
     return message
